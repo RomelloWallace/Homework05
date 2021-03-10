@@ -1,3 +1,9 @@
+/*
+ Author: Romello Wallace
+ Date: 3/9/2021
+ Homework 5
+ This is a  program that replicates the n and h options of ls. 
+*/
 #include <stdio.h>
 
 #include <dirent.h>
@@ -17,7 +23,7 @@
 #include <pwd.h>
 
 #include <grp.h>
-
+/* time format prints time last modifed and if the days are greater than one 180 it will print the year*/
 void timeFormat(struct stat buf){
     
   char time[50];
@@ -34,6 +40,7 @@ void timeFormat(struct stat buf){
               printf(" ");
               
 }
+/*in an effort to clean up code a little, get IDs will prit the user and group uids*/
 void getIDs(){
     
               printf("%d", getuid());
@@ -41,6 +48,7 @@ void getIDs(){
               printf("%d", getgid());
               printf(" ");
 }
+/* RWX will print the file permissions in RWX format*/
 void RWX(struct stat buf){
     
           
@@ -62,6 +70,7 @@ void RWX(struct stat buf){
 
 
 int main(int argc, char ** argv) {
+    /*lines 74 through87 are the various data types created and necessary for the program*/
   struct group * grp;
   struct passwd * user;
   char * getcwd(char * buf, size_t size);
@@ -83,8 +92,9 @@ int main(int argc, char ** argv) {
   }
   for (int i = 1; i < argc; i++) {
     stat(max, & buf);
-
+/*option 1 will format based of of n of ls method*/
     if (strchr(argv[i], '-') != NULL && strcmp(argv[i], option1) == 0) {
+        /*checks for directory, if it isa  directory it will open and start iterating through files*/
       if (S_ISDIR(buf.st_mode)) {
         d = opendir(max);
         if (d) {
@@ -99,11 +109,14 @@ int main(int argc, char ** argv) {
               printf("\n");
             }
           }
+            /*close directory once finished to avoid errors*/
           closedir(d);
         }
       }
       return 0;
-    } else if (strchr(argv[i], '-') != NULL && strcmp(argv[i], option2) == 0) {
+    }
+      /*option two will follow h of ls method*/
+      else if (strchr(argv[i], '-') != NULL && strcmp(argv[i], option2) == 0) {
 
       grp = getgrgid(getgid());
       user = getpwuid(getuid());
@@ -143,9 +156,13 @@ int main(int argc, char ** argv) {
         }
       }
       return 0;
-    } else if (strchr(argv[i], '-') != NULL && strcmp(argv[i], option3) == 0) {
+    }
+      /*combines n and h option*/
+      else if (strchr(argv[i], '-') != NULL && strcmp(argv[i], option3) == 0) {
+          /*grp and user will print the names of the user and group who own the files*/
   grp = getgrgid(getgid());
       user = getpwuid(getuid());
+          /*check if argument is directory and iterate through if it is.*/
       if (S_ISDIR(buf.st_mode)) {
         d = opendir(max);
         if (d) {
@@ -187,7 +204,8 @@ int main(int argc, char ** argv) {
         }
       return 0;
     } 
-    else if (strchr(argv[i], '-') != NULL && strcmp(argv[i], option4) == 0) {
+      /*combines n and h option of ls*/
+    else if(strchr(argv[i], '-') != NULL && strcmp(argv[i], option4) == 0) {
  grp = getgrgid(getgid());
       user = getpwuid(getuid());
       if (S_ISDIR(buf.st_mode)) {
@@ -200,7 +218,7 @@ int main(int argc, char ** argv) {
               printf(" ");
               printf("%s", grp -> gr_name);
               printf(" "); 
-
+/*byte combo is very messy but i couldnt figure out a proper function formatto clean it up*/
               if (sizeof(dir -> d_name) > 1000 && sizeof(dir -> d_name) < 1000000) {
                 bytesconvo = sizeof(dir -> d_name) / 1000;
                 printf("%ld", bytesconvo);
@@ -231,6 +249,7 @@ int main(int argc, char ** argv) {
         }
       return 0;
     } 
+      /*if argument contains - but isnt an option will print not an option and list directory if final argument is a directory*/
     else if (strchr(argv[i], '-') != NULL) {
 
       perror("not an option");
@@ -247,6 +266,7 @@ int main(int argc, char ** argv) {
       }
       return 0;
     } else {
+        /*if all else fails then the option isnt supported and the program will terminate*/
       perror("unsupported option");
     }
   }
