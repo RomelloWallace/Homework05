@@ -23,6 +23,7 @@
 #include <pwd.h>
 
 #include <grp.h>
+setvbuf (stdout, NULL, _IONBF, 0);
 
 /* time format prints time last modifed and if the days are greater than one 180 it will print the year*/
 void timeFormat(struct stat buf) {
