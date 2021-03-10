@@ -64,7 +64,7 @@ void RWX(struct stat buf) {
   printf("%s",(buf.st_mode & S_IRGRP) ? "r" : "-");
   printf("%s",(buf.st_mode & S_IWGRP) ? "w" : "-");
   printf("%s",(buf.st_mode & S_IXGRP) ? "x" : "-");
-  printf("%",(buf.st_mode & S_IROTH) ? "r" : "-");
+  printf("%s",(buf.st_mode & S_IROTH) ? "r" : "-");
   printf("%s",(buf.st_mode & S_IWOTH) ? "w" : "-");
   printf("%s",(buf.st_mode & S_IXOTH) ? "x" : "-");
   printf("%s"," ");
@@ -107,7 +107,7 @@ int main(int argc, char ** argv) {
               printf("%s"," ");
               timeFormat(buf);
               printf("%s", dir -> d_name);
-              printf("%s\n");
+              printf("\n");
             }
           }
           /*close directory once finished to avoid errors*/
@@ -150,7 +150,7 @@ int main(int argc, char ** argv) {
               timeFormat(buf);
               printf("%s"," ");
               printf("%s",dir -> d_name);
-              printf("%s\n");
+              printf("\n");
             }
           }
           closedir(d);
@@ -197,7 +197,7 @@ int main(int argc, char ** argv) {
 
               printf("%s"," ");
               printf("%s",dir -> d_name);
-              printf("%s\n");
+              printf("\n");
             }
           }
         }
@@ -242,7 +242,7 @@ int main(int argc, char ** argv) {
 
               printf("%s"," ");
               printf("%s",dir -> d_name);
-              printf("%s\n");
+              printf("\n");
             }
           }
         }
