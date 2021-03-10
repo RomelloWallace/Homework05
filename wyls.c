@@ -23,7 +23,7 @@
 #include <pwd.h>
 
 #include <grp.h>
-setvbuf (stdout, NULL, _IONBF, 0);
+
 
 /* time format prints time last modifed and if the days are greater than one 180 it will print the year*/
 void timeFormat(struct stat buf) {
@@ -71,6 +71,7 @@ void RWX(struct stat buf) {
 }
 
 int main(int argc, char ** argv) {
+ setvbuf (stdout, NULL, _IONBF, 0);
   /*lines 74 through87 are the various data types created and necessary for the program*/
   struct group * grp;
   struct passwd * user;
