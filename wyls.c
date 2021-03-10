@@ -39,35 +39,35 @@ void timeFormat(struct stat buf) {
   }
 
   printf("%s", time);
-  printf(" ");
+  printf("%s", " ");
 
 };
 /*in an effort to clean up code a little, get IDs will prit the user and group uids*/
 void getIDs() {
 
   printf("%d", getuid());
-  printf(" ");
+  printf("%s"," ");
   printf("%d", getgid());
-  printf(" ");
+  printf("%s"," ");
 }
 /* RWX will print the file permissions in RWX format*/
 void RWX(struct stat buf) {
 
   if (S_ISLNK(buf.st_mode)) {
-    printf((S_ISLNK(buf.st_mode)) ? "d" : "-");
+    printf("%s",(S_ISLNK(buf.st_mode)) ? "d" : "-");
   } else {
-    printf((S_ISDIR(buf.st_mode)) ? "d" : "-");
+    printf("%s",(S_ISDIR(buf.st_mode)) ? "d" : "-");
   }
-  printf((buf.st_mode & S_IRUSR) ? "r" : "-");
-  printf((buf.st_mode & S_IWUSR) ? "w" : "-");
-  printf((buf.st_mode & S_IXUSR) ? "x" : "-");
-  printf((buf.st_mode & S_IRGRP) ? "r" : "-");
-  printf((buf.st_mode & S_IWGRP) ? "w" : "-");
-  printf((buf.st_mode & S_IXGRP) ? "x" : "-");
-  printf((buf.st_mode & S_IROTH) ? "r" : "-");
-  printf((buf.st_mode & S_IWOTH) ? "w" : "-");
-  printf((buf.st_mode & S_IXOTH) ? "x" : "-");
-  printf(" ");
+  printf("%s",buf.st_mode & S_IRUSR) ? "r" : "-");
+  printf("%s",buf.st_mode & S_IWUSR) ? "w" : "-");
+  printf("%s",buf.st_mode & S_IXUSR) ? "x" : "-");
+  printf("%s",buf.st_mode & S_IRGRP) ? "r" : "-");
+  printf("%s",buf.st_mode & S_IWGRP) ? "w" : "-");
+  printf("%s",buf.st_mode & S_IXGRP) ? "x" : "-");
+  printf("%s",buf.st_mode & S_IROTH) ? "r" : "-");
+  printf("%s",buf.st_mode & S_IWOTH) ? "w" : "-");
+  printf("%s",buf.st_mode & S_IXOTH) ? "x" : "-");
+  printf("%s"," ");
 }
 
 int main(int argc, char ** argv) {
@@ -104,10 +104,10 @@ int main(int argc, char ** argv) {
               RWX(buf);
               getIDs();
               printf("%ld", sizeof(dir -> d_name));
-              printf(" ");
+              printf("%s"," ");
               timeFormat(buf);
-              printf(dir -> d_name);
-              printf("\n");
+              printf("%s", dir -> d_name);
+              printf("%s\n");
             }
           }
           /*close directory once finished to avoid errors*/
@@ -128,9 +128,9 @@ int main(int argc, char ** argv) {
             if (dir -> d_name[0] != '.') {
               RWX(buf);
               printf("%s", user -> pw_name);
-              printf(" ");
+              printf("%s"," ");
               printf("%s", grp -> gr_name);
-              printf(" ");
+              printf("%s"," ");
               if (sizeof(dir -> d_name) > 1000 && sizeof(dir -> d_name) < 1000000) {
                 bytesconvo = sizeof(dir -> d_name) / 1000;
                 printf("%ld", bytesconvo);
@@ -146,11 +146,11 @@ int main(int argc, char ** argv) {
               } else {
                 printf("%ld", sizeof(dir -> d_name));
               }
-              printf(" ");
+              printf("%s"," ");
               timeFormat(buf);
-              printf(" ");
-              printf(dir -> d_name);
-              printf("\n");
+              printf("%s"," ");
+              printf("%s",dir -> d_name);
+              printf("%s\n");
             }
           }
           closedir(d);
@@ -171,9 +171,9 @@ int main(int argc, char ** argv) {
             if (dir -> d_name[0] != '.') {
               RWX(buf);
               printf("%s", user -> pw_name);
-              printf(" ");
+              printf("%s"," ");
               printf("%s", grp -> gr_name);
-              printf(" ");
+              printf("%s"," ");
 
               if (sizeof(dir -> d_name) > 1000 && sizeof(dir -> d_name) < 1000000) {
                 bytesconvo = sizeof(dir -> d_name) / 1000;
@@ -191,13 +191,13 @@ int main(int argc, char ** argv) {
                 printf("%ld", sizeof(dir -> d_name));
               }
 
-              printf(" ");
+              printf("%s", " ");
               timeFormat(buf);
               printf("%ld", sizeof(dir -> d_name));
 
-              printf(" ");
-              printf(dir -> d_name);
-              printf("\n");
+              printf("%s"," ");
+              printf("%s",dir -> d_name);
+              printf("%s\n");
             }
           }
         }
@@ -216,9 +216,9 @@ int main(int argc, char ** argv) {
             if (dir -> d_name[0] != '.') {
               RWX(buf);
               printf("%s", user -> pw_name);
-              printf(" ");
+              printf("%s"," ");
               printf("%s", grp -> gr_name);
-              printf(" ");
+              printf("%s"," ");
               /*byte combo is very messy but i couldnt figure out a proper function formatto clean it up*/
               if (sizeof(dir -> d_name) > 1000 && sizeof(dir -> d_name) < 1000000) {
                 bytesconvo = sizeof(dir -> d_name) / 1000;
@@ -236,13 +236,13 @@ int main(int argc, char ** argv) {
                 printf("%ld", sizeof(dir -> d_name));
               }
 
-              printf(" ");
+              printf("%s"," ");
               timeFormat(buf);
               printf("%ld", sizeof(dir -> d_name));
 
-              printf(" ");
-              printf(dir -> d_name);
-              printf("\n");
+              printf("%s"," ");
+              printf("%s",dir -> d_name);
+              printf("%s\n");
             }
           }
         }
