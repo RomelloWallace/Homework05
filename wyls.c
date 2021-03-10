@@ -54,12 +54,12 @@ void getIDs() {
 void RWX(struct stat buf) {
 
   if (S_ISLNK(buf.st_mode)) {
-    printf((S_ISLNK(buf.st_mode)) ? "%sd" : "%s-");
+    printf((S_ISLNK(buf.st_mode)) ? "d" : "-");
   } else {
-    printf((S_ISDIR(buf.st_mode)) ? "%sd" : "%s-");
+    printf((S_ISDIR(buf.st_mode)) ? "d" : "-");
   }
-  printf(buf.st_mode & S_IRUSR) ? "%sr" : "%s-");
-  printf(buf.st_mode & S_IWUSR) ? "%sw" : "%s-");
+  printf(buf.st_mode & S_IRUSR) ? "r" : "-");
+  printf(buf.st_mode & S_IWUSR) ? "w" : "-");
   printf(buf.st_mode & S_IXUSR) ? "x" : "-");
   printf(buf.st_mode & S_IRGRP) ? "r" : "-");
   printf(,buf.st_mode & S_IWGRP) ? "w" : "-");
