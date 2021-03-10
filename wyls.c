@@ -39,7 +39,7 @@ void timeFormat(struct stat buf){
               printf("%s", time);
               printf(" ");
               
-}
+};
 /*in an effort to clean up code a little, get IDs will prit the user and group uids*/
 void getIDs(){
     
