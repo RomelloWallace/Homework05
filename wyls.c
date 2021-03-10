@@ -71,7 +71,6 @@ void RWX(struct stat buf) {
 }
 
 int main(int argc, char ** argv) {
- setvbuf (stdout, NULL, _IONBF, 0);
   /*lines 74 through87 are the various data types created and necessary for the program*/
   struct group * grp;
   struct passwd * user;
