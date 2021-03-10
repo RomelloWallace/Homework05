@@ -54,19 +54,19 @@ void getIDs() {
 void RWX(struct stat buf) {
 
   if (S_ISLNK(buf.st_mode)) {
-    printf("%s",(S_ISLNK(buf.st_mode)) ? "d" : "-");
+    printf((S_ISLNK(buf.st_mode)) ? "%sd" : "%s-");
   } else {
-    printf("%s",(S_ISDIR(buf.st_mode)) ? "d" : "-");
+    printf((S_ISDIR(buf.st_mode)) ? "%sd" : "%s-");
   }
-  printf("%s",buf.st_mode & S_IRUSR) ? "r" : "-");
-  printf("%s",buf.st_mode & S_IWUSR) ? "w" : "-");
-  printf("%s",buf.st_mode & S_IXUSR) ? "x" : "-");
-  printf("%s",buf.st_mode & S_IRGRP) ? "r" : "-");
-  printf("%s",buf.st_mode & S_IWGRP) ? "w" : "-");
-  printf("%s",buf.st_mode & S_IXGRP) ? "x" : "-");
-  printf("%s",buf.st_mode & S_IROTH) ? "r" : "-");
-  printf("%s",buf.st_mode & S_IWOTH) ? "w" : "-");
-  printf("%s",buf.st_mode & S_IXOTH) ? "x" : "-");
+  printf(buf.st_mode & S_IRUSR) ? "%sr" : "%s-");
+  printf(buf.st_mode & S_IWUSR) ? "%sw" : "%s-");
+  printf(buf.st_mode & S_IXUSR) ? "x" : "-");
+  printf(buf.st_mode & S_IRGRP) ? "r" : "-");
+  printf(,buf.st_mode & S_IWGRP) ? "w" : "-");
+  printf(buf.st_mode & S_IXGRP) ? "x" : "-");
+  printf(,buf.st_mode & S_IROTH) ? "r" : "-");
+  printf(buf.st_mode & S_IWOTH) ? "w" : "-");
+  printf(buf.st_mode & S_IXOTH) ? "x" : "-");
   printf("%s"," ");
 }
 
